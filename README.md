@@ -1,74 +1,143 @@
-Hyperion: AI-Powered Claims Similarity Engine
-Overview
-Hyperion is a specialized AI decision-support tool designed to accelerate and optimize the insurance claims adjustment process. When an adjuster receives a raw, unstructured First Notice of Loss (FNOL), Hyperion utilizes Natural Language Processing (NLP) and semantic vector search to instantly surface highly relevant historical claim precedents from a database of over 50,000 records.
+# Hyperion: AI-Powered Claims Similarity Engine
 
-By anchoring new claims against historical data, Hyperion reduces manual database querying, minimizes human error in reserve estimation, and standardizes claim outcomes across varying jurisdictions.
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Framework: Gradio](https://img.shields.io/badge/UI-Gradio-ff69b4.svg)](https://gradio.app/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Core Features
-Semantic Vector Search: Replaces rigid keyword matching with contextual understanding. Hyperion uses the all-MiniLM-L6-v2 sentence-transformer model to map unstructured FNOL descriptions into dense vector space, finding historical claims with similar underlying circumstances even if the vocabulary differs.
+This project aligns unstructured insurance data with dense vector embeddings to construct a **semantic claims search engine**. By comparing incoming First Notice of Loss (FNOL) descriptions against a massive historical database, we discover the most contextually relevant precedents—with immediate implications for reserve accuracy, fraud detection, and investigation speed.
 
-Dynamic Multi-Select Filtering: Employs efficient post-filtering logic via Pandas, allowing adjusters to narrow down semantic matches by specific combinations of Jurisdictions (e.g., CA, TX, NY) and Policy Types (e.g., Commercial Auto, General Liability).
+---
 
-Opt-In Investigation Synthesis: An advanced, interactive panel that allows adjusters to select specific historical matches to generate a custom investigation plan. The engine calculates the financial baseline (minimum, maximum, and average historical exposures) and extracts shared key factors to recommend immediate next steps.
+## Core Value Proposition
 
-High-Volume Capability: Engineered to process and embed 50,000+ records in memory with progress tracking, demonstrating robust local computational scaling.
+**Semantic context, not exact keyword matching, predicts claim relevance.**
 
-Adaptive User Interface: Built with Gradio, featuring a custom CSS injection that provides a responsive, high-contrast experience supporting both Light and Dark system modes.
+| Search Modality | Handling of "Tenant fell on wet floor" vs "Customer slipped on spill" |
+|-----------------|:---------------------------------------------------------------------|
+| Legacy Keyword Search | **Missed Match** (Requires exact vocabulary overlap)           |
+| Hyperion Vector Search | **Good Match** (Understands underlying semantic concept)      |
 
-Local Installation and Setup Guide
-Follow these steps to run the Hyperion application on your local machine.
+This allows adjusters to find relevant precedents without using exact phrasing or legacy systems. 
+Hyperion reduces hours of manual database querying into a sub-second operation, standardizing claim outcomes across varying jurisdictions.
 
-Prerequisites
-Python 3.8 or higher
+---
 
-Git
+## The Problem & Our Approach
 
-1. Clone the Repository
-Open your terminal and clone the repository to your local machine:
+The industry standard evaluates new claims by looking at past cases. However, traditional searches using exact keywords or strict policy codes return either zero results or thousands of irrelevant false positives and requires a significant amount of manual work.  
 
-git clone https://github.com/YOUR-USERNAME/hyperion.git
+Our approach: systematically map **n (default 1000)historical claims** into a dense vector space using NLP (`all-MiniLM-L6-v2`). 
 
+We then combine this vector search with **dynamic metadata post-filtering** (Jurisdiction and Policy Type) to surface exact precedents. Finally, an **Opt-In Synthesis panel** generates an actionable investigation plan based strictly on the financial baselines and key factors of the user's selected matches.
+
+---
+
+## Quick Start
+
+### 1. Environment Setup
+
+```bash
+# Clone the repository
+git clone [https://github.com/YOUR-USERNAME/hyperion.git](https://github.com/YOUR-USERNAME/hyperion.git)
 cd hyperion
 
-2. Set Up the Virtual Environment
-It is highly recommended to use a virtual environment to isolate the project dependencies.
-
-For Windows:
-
+# Create and activate a virtual environment
 python -m venv venv
 
+# On Windows:
 .\venv\Scripts\activate
+# On macOS/Linux:
+# source venv/bin/activate
+```
 
-For macOS/Linux:
+### 2. Install Dependencies
 
-python3 -m venv venv
-
-source venv/bin/activate
-
-3. Install Dependencies
-With the virtual environment active, install the required Python libraries.
-
+```bash
+# Install core NLP and UI frameworks
 pip install pandas gradio sentence-transformers scikit-learn
+```
 
-4. Generate the Synthetic Dataset
-Hyperion requires a foundational dataset to run. Execute the data generation script to create a local JSON file containing 50,000 synthetic historical claims. This will create a file named large_claims_data.json in your root directory.
+### 3. Generate the Dataset
 
+Hyperion requires a foundational dataset to run. We use a local generator to create n (default 1000) synthetic historical claims, allowing you to stress-test the local embedding logic without needing external database credentials. Using the sample dataset also works fine. 
+
+```bash
+# Generates large_claims_data.json (~30MB)
 python generate_data.py
+```
 
-5. Launch the Application
-Start the Hyperion server:
+### 4. Run the Pipeline
 
+```bash
+# Start the Hyperion Server
 python app.py
+```
 
-Upon startup, the backend will load the dataset and compute the vector embeddings. A progress bar will display in the terminal. Once complete, the terminal will output a local URL (typically http://127.0.0.1:7860). Open this link in your web browser to interact with Hyperion.
+> **Note:** Upon startup, the backend will load the JSON dataset and compute the vector embeddings in memory. A progress bar will display in the terminal. Once complete, it will output a local `127.0.0.1` URL.
 
-Usage Workflow
-Type or paste a claim description into the New Claim (FNOL) Description box.
+---
 
-(Optional) Apply filters using the Jurisdiction and Policy Type dropdowns.
+## Technical Features
 
-Click Find Contextual Precedents.
+| Feature | Implementation | Notes |
+|:--------|:---------------|:------|
+| **Vector Search** | `sentence-transformers` | Sub-second latency via cosine similarity. |
+| **Multi-Select Filters** | `pandas` `.isin()` | Post-filtering maintains vector index integrity. |
+| **Data Synthesis** | Procedural Aggregation | Calculates min/max/mean exposures instantly. |
+| **Adaptive UI** | `gradio` + Custom CSS | Full support for Light and Dark system modes. |
 
-Review the top matches. To load more, click Show More Cases.
+---
 
-To generate an action plan, expand the Advanced Synthesis Panel, select the checkboxes for the most relevant precedents, and click Generate Investigation Plan.
+## Pipeline Architecture
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            HYPERION ENGINE                                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  Phase 1: DATA INGESTION & EMBEDDING                                        │
+│  ───────────────────────────────────                                        │
+│  • Load n (default = 1000) unstructured historical claims (JSON → Pandas)   │
+│  • Concatenate descriptions + key factors for maximum context               │
+│  • Encode text using all-MiniLM-L6-v2 transformer model                     │
+│  → Output: In-memory dense vector matrix                                    │
+│                                                                             │
+│  Phase 2: SEMANTIC SEARCH & FILTERING                                       │
+│  ────────────────────────────────────                                       │
+│  • Encode new incoming First Notice of Loss (FNOL)                          │
+│  • Compute cosine similarity against historical vector space                │
+│  • Apply Pandas multi-select post-filters (Jurisdiction, Policy Type)       │
+│  → Output: Top N semantically aligned historical precedents                 │
+│                                                                             │
+│  Phase 3: OPT-IN SYNTHESIS                                                  │
+│  ─────────────────────────                                                  │
+│  • Adjuster manually selects highly relevant cases from matches             │
+│  • Engine aggregates financial baselines (minimum, maximum, mean)           │
+│  • Procedural synthesis extracts common factors for investigation plan      │
+│  → Output: Actionable Next-Steps Report & Recommendation                    │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Directory Structure
+
+```text
+hyperion/
+├── app.py                      # Core application: search backend + Gradio UI
+├── generate_data.py            # Script to generate synthetic historical precedents
+├── large_claims_data.json      # Output dataset (generated locally, do not commit)
+├── README.md                   # Project documentation
+└── .gitignore                  # Git tracking exclusions
+```
+
+---
+
+## Usage Workflow
+
+1. **Input:** Type or paste an unstructured claim description into the *New Claim (FNOL)* box.
+2. **Filter:** (Optional) Apply parameters using the multi-select *Jurisdiction* and *Policy Type* dropdowns.
+3. **Search:** Click **Find Contextual Precedents**.
+4. **Expand:** Review the top matches. Click **Show More Cases** to load additional precedents.
+5. **Synthesize:** Expand the **Advanced Synthesis Panel**, select the checkboxes for the most relevant precedents, and click **Generate Investigation Plan** to view aggregate financials and next steps.

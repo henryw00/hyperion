@@ -1,0 +1,248 @@
+{
+    "metadata": {
+        "description": "Sample historical claims dataset for Elysian Product & Engineering Intern Take-Home",
+        "version": "1.0",
+        "created": "2026-02-27",
+        "notes": "This is synthetic data created for assessment purposes. You may supplement with additional synthetic data."
+    },
+    "claims": [
+        {
+            "id": "CLM-001",
+            "policy_type": "Commercial Property",
+            "loss_type": "Water Damage",
+            "description": "Burst pipe in office building caused flooding on floors 2-3. Damaged carpet, drywall, and computer equipment. Building was 15 years old with original plumbing.",
+            "outcome": "Settled",
+            "settlement_amount": 145000,
+            "days_to_resolution": 47,
+            "jurisdiction": "TX",
+            "key_factors": [
+                "infrastructure age",
+                "multiple floors affected",
+                "equipment damage"
+            ]
+        },
+        {
+            "id": "CLM-002",
+            "policy_type": "Commercial Property",
+            "loss_type": "Fire",
+            "description": "Kitchen fire in restaurant spread to dining area. Extensive smoke damage throughout. Fire suppression system activated but delayed.",
+            "outcome": "Settled",
+            "settlement_amount": 320000,
+            "days_to_resolution": 89,
+            "jurisdiction": "CA",
+            "key_factors": [
+                "fire spread",
+                "smoke damage",
+                "suppression system issue",
+                "business interruption"
+            ]
+        },
+        {
+            "id": "CLM-003",
+            "policy_type": "General Liability",
+            "loss_type": "Slip and Fall",
+            "description": "Customer slipped on wet floor in retail store. Claimed back injury requiring surgery. Store had 'wet floor' sign but placement disputed.",
+            "outcome": "Litigated",
+            "settlement_amount": 89000,
+            "days_to_resolution": 234,
+            "jurisdiction": "FL",
+            "key_factors": [
+                "disputed warning signage",
+                "surgery required",
+                "premises liability"
+            ]
+        },
+        {
+            "id": "CLM-004",
+            "policy_type": "Commercial Auto",
+            "loss_type": "Collision",
+            "description": "Company delivery truck rear-ended at stoplight. Driver claimed whiplash. Other driver cited for following too closely.",
+            "outcome": "Settled",
+            "settlement_amount": 34000,
+            "days_to_resolution": 28,
+            "jurisdiction": "IL",
+            "key_factors": [
+                "clear liability",
+                "soft tissue injury",
+                "police report available"
+            ]
+        },
+        {
+            "id": "CLM-005",
+            "policy_type": "Commercial Property",
+            "loss_type": "Theft",
+            "description": "Break-in at warehouse. Electronics inventory stolen. Alarm system was offline for maintenance at time of theft.",
+            "outcome": "Settled",
+            "settlement_amount": 78000,
+            "days_to_resolution": 52,
+            "jurisdiction": "GA",
+            "key_factors": [
+                "security system offline",
+                "inventory loss",
+                "potential coverage issue"
+            ]
+        },
+        {
+            "id": "CLM-006",
+            "policy_type": "General Liability",
+            "loss_type": "Product Liability",
+            "description": "Customer claimed allergic reaction to cosmetic product. No warning label for specific ingredient. Required emergency room visit.",
+            "outcome": "Settled",
+            "settlement_amount": 45000,
+            "days_to_resolution": 63,
+            "jurisdiction": "NY",
+            "key_factors": [
+                "labeling issue",
+                "allergic reaction",
+                "medical treatment required"
+            ]
+        },
+        {
+            "id": "CLM-007",
+            "policy_type": "Commercial Property",
+            "loss_type": "Water Damage",
+            "description": "Roof leak during storm damaged retail inventory. Tenant claims landlord ignored previous leak reports. Dispute over maintenance responsibility.",
+            "outcome": "Open",
+            "settlement_amount": null,
+            "reserve_amount": 156000,
+            "days_open": 45,
+            "jurisdiction": "TX",
+            "key_factors": [
+                "landlord-tenant dispute",
+                "prior notice issue",
+                "inventory damage",
+                "maintenance responsibility"
+            ]
+        },
+        {
+            "id": "CLM-008",
+            "policy_type": "Professional Liability",
+            "loss_type": "Errors & Omissions",
+            "description": "Accounting firm missed tax deadline for client. Client incurred $50K in penalties. Firm claims client provided documents late.",
+            "outcome": "Settled",
+            "settlement_amount": 62000,
+            "days_to_resolution": 91,
+            "jurisdiction": "MA",
+            "key_factors": [
+                "missed deadline",
+                "financial penalties",
+                "disputed responsibility",
+                "documentation issue"
+            ]
+        },
+        {
+            "id": "CLM-009",
+            "policy_type": "Commercial Auto",
+            "loss_type": "Collision",
+            "description": "Sales rep's vehicle hit pedestrian in parking lot. Low speed but pedestrian claimed knee injury. Dashcam footage available.",
+            "outcome": "Settled",
+            "settlement_amount": 28000,
+            "days_to_resolution": 56,
+            "jurisdiction": "OH",
+            "key_factors": [
+                "pedestrian involved",
+                "video evidence",
+                "low speed impact",
+                "knee injury"
+            ]
+        },
+        {
+            "id": "CLM-010",
+            "policy_type": "General Liability",
+            "loss_type": "Bodily Injury",
+            "description": "Contractor's employee fell through ceiling while working in client's building. Disputed whether proper safety equipment was provided.",
+            "outcome": "Litigated",
+            "settlement_amount": 210000,
+            "days_to_resolution": 312,
+            "jurisdiction": "PA",
+            "key_factors": [
+                "workplace injury",
+                "safety equipment dispute",
+                "contractor liability",
+                "serious injury"
+            ]
+        },
+        {
+            "id": "CLM-011",
+            "policy_type": "Commercial Property",
+            "loss_type": "Fire",
+            "description": "Electrical fire in storage unit facility. Multiple tenants' property destroyed. Origin traced to faulty wiring in unit 47.",
+            "outcome": "Settled",
+            "settlement_amount": 445000,
+            "days_to_resolution": 156,
+            "jurisdiction": "AZ",
+            "key_factors": [
+                "electrical origin",
+                "multiple claimants",
+                "subrogation potential",
+                "faulty wiring"
+            ]
+        },
+        {
+            "id": "CLM-012",
+            "policy_type": "Commercial Property",
+            "loss_type": "Water Damage",
+            "description": "HVAC condensation leak damaged server room. IT equipment and data recovery costs. Maintenance records show missed inspections.",
+            "outcome": "Settled",
+            "settlement_amount": 230000,
+            "days_to_resolution": 78,
+            "jurisdiction": "WA",
+            "key_factors": [
+                "HVAC issue",
+                "IT equipment",
+                "data recovery",
+                "maintenance gap"
+            ]
+        },
+        {
+            "id": "CLM-013",
+            "policy_type": "General Liability",
+            "loss_type": "Slip and Fall",
+            "description": "Employee of visiting vendor fell on icy sidewalk outside office building. Building management responsible for snow removal per lease.",
+            "outcome": "Open",
+            "settlement_amount": null,
+            "reserve_amount": 95000,
+            "days_open": 23,
+            "jurisdiction": "MN",
+            "key_factors": [
+                "winter conditions",
+                "snow removal responsibility",
+                "third-party injury",
+                "lease obligations"
+            ]
+        },
+        {
+            "id": "CLM-014",
+            "policy_type": "Commercial Auto",
+            "loss_type": "Collision",
+            "description": "Fleet vehicle T-boned at intersection. Other driver ran red light but disputed. No traffic camera. Two witness statements conflict.",
+            "outcome": "Litigated",
+            "settlement_amount": 156000,
+            "days_to_resolution": 287,
+            "jurisdiction": "NJ",
+            "key_factors": [
+                "disputed liability",
+                "conflicting witnesses",
+                "no video evidence",
+                "intersection accident"
+            ]
+        },
+        {
+            "id": "CLM-015",
+            "policy_type": "Professional Liability",
+            "loss_type": "Errors & Omissions",
+            "description": "Software consultant's code caused client's e-commerce site to crash during Black Friday. Client claims $200K in lost sales.",
+            "outcome": "Open",
+            "settlement_amount": null,
+            "reserve_amount": 175000,
+            "days_open": 34,
+            "jurisdiction": "CA",
+            "key_factors": [
+                "software failure",
+                "business interruption",
+                "high-revenue period",
+                "consequential damages claim"
+            ]
+        }
+    ]
+}

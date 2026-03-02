@@ -2,7 +2,6 @@
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Framework: Gradio](https://img.shields.io/badge/UI-Gradio-ff69b4.svg)](https://gradio.app/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This project aligns unstructured insurance data with dense vector embeddings to construct a **semantic claims search engine**. By comparing incoming First Notice of Loss (FNOL) descriptions against a massive historical database, we discover the most contextually relevant precedents—with immediate implications for reserve accuracy, fraud detection, and investigation speed.
 

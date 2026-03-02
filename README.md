@@ -44,6 +44,9 @@ cd hyperion
 # Create and activate a virtual environment
 python -m venv venv
 
+# On macOS:
+python3 -m venv venv
+
 # On Windows:
 .\venv\Scripts\activate
 # On macOS/Linux:
@@ -70,7 +73,7 @@ python generate_data.py
 
 ```bash
 # Start the Hyperion Server
-python app.py
+python app/app.py
 ```
 
 > **Note:** Upon startup, the backend will load the JSON dataset and compute the vector embeddings in memory. A progress bar will display in the terminal. Once complete, it will output a local `127.0.0.1` URL.

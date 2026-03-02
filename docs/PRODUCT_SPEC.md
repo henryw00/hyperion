@@ -36,13 +36,13 @@ To prove Hyperion accelerates adjuster workfloww, the following metrics should b
 
 * **Primary Metric: Time to First Actionable Insight**
   * *Definition:* The time elapsed between a user pasting an FNOL and generating a synthesis report.
-  * *Target:* < 10 seconds (representing a >95% reduction from the manual baseline).
+  * *Target:* <1 minute, this would indicate users are able to quickly find relevant information.
 * **Secondary Metric: Search Refinement Rate**
   * *Definition:* The average number of subsequent search queries executed per session.
-  * *Target:* < 1.5 queries. A low number indicates the semantic search is surfacing the correct context on the first attempt, eliminating keyword guessing.
+  * *Target:* <2 queries. Using a single query indicates the semantic search is surfacing the correct context on the first attempt, eliminating keyword guessing.
 * **Engagement Metric: Synthesis Adoption Rate**
   * *Definition:* The percentage of total searches where the user clicks "Generate Investigation Plan."
-  * *Target:* > 60%. High adoption proves the automated data extraction is trusted and saves manual calculation time.
+  * *Target:* > 60%. High adoption proves the data extracted is trusted and saves manual labor.
 
 ## 6. Future Development Roadmap (v2.0+)
 To transition Hyperion from a high-performance local MVP to an enterprise-grade cloud application:
